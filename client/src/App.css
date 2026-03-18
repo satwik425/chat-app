@@ -1,0 +1,342 @@
+/* ===============================
+   GLOBAL + ANIMATED BACKGROUND
+================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  background: #000008;
+  overflow: hidden;
+}
+
+/* ===============================
+   STAR FIELD CANVAS
+================================ */
+#starfield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* ===============================
+   NEBULA OVERLAY
+================================ */
+.nebula {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 30%, rgba(59, 7, 100, 0.45) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 35% at 80% 70%, rgba(7, 36, 100, 0.4) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 60% 20%, rgba(100, 7, 40, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 40% 80%, rgba(7, 70, 100, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ===============================
+   MILKY WAY BAND
+================================ */
+.milkyway {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(115deg,
+      transparent 0%,
+      rgba(120, 80, 255, 0.04) 30%,
+      rgba(180, 120, 255, 0.08) 45%,
+      rgba(200, 160, 255, 0.06) 50%,
+      rgba(120, 80, 255, 0.04) 55%,
+      transparent 70%);
+  pointer-events: none;
+}
+
+/* ===============================
+   CHAT CONTAINER
+================================ */
+.chat-container {
+  width: 420px;
+  height: 600px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.8),
+    0 0 0 0.5px rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.chat-header {
+  padding: 16px;
+  text-align: center;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #ecfdf5;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.chat-header::after {
+  content: "● LIVE";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #bbf7d0;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4
+  }
+
+  50% {
+    opacity: 1
+  }
+
+  100% {
+    opacity: 0.4
+  }
+}
+
+/* ===============================
+   CHAT BODY (WHATSAPP STYLE)
+================================ */
+.chat-body {
+  flex: 1;
+  padding: 18px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+
+  background-color: #0b141a;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg opacity='0.035' fill='%23ffffff'%3E%3Ccircle cx='10' cy='10' r='1'/%3E%3Ccircle cx='30' cy='10' r='0.7'/%3E%3Ccircle cx='50' cy='10' r='1'/%3E%3Ccircle cx='20' cy='20' r='0.8'/%3E%3Ccircle cx='40' cy='20' r='0.5'/%3E%3Ccircle cx='10' cy='30' r='0.6'/%3E%3Ccircle cx='50' cy='30' r='0.9'/%3E%3Ccircle cx='30' cy='40' r='0.7'/%3E%3Ccircle cx='15' cy='50' r='0.8'/%3E%3Ccircle cx='45' cy='50' r='0.6'/%3E%3C/g%3E%3C/svg%3E"),
+    repeating-linear-gradient(-45deg,
+      transparent,
+      transparent 18px,
+      rgba(255, 255, 255, 0.012) 18px,
+      rgba(255, 255, 255, 0.012) 19px),
+    repeating-linear-gradient(45deg,
+      transparent,
+      transparent 18px,
+      rgba(255, 255, 255, 0.008) 18px,
+      rgba(255, 255, 255, 0.008) 19px);
+}
+
+.chat-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.4);
+  border-radius: 10px;
+}
+
+/* ===============================
+   MESSAGE
+================================ */
+.message {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-content {
+  padding: 10px 14px;
+  border-radius: 16px;
+  max-width: 75%;
+  font-size: 14px;
+}
+
+.me {
+  align-items: flex-end;
+}
+
+.me .message-content {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: white;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);
+  border-bottom-right-radius: 6px;
+}
+
+.other {
+  align-items: flex-start;
+}
+
+.other .message-content {
+  background: #1f2c34;
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom-left-radius: 6px;
+}
+
+/* ===============================
+   META
+================================ */
+.message-meta {
+  font-size: 10px;
+  color: #94a3b8;
+  margin-top: 4px;
+  display: flex;
+  gap: 6px;
+}
+
+/* ===============================
+   FOOTER (WHATSAPP STYLE)
+================================ */
+.chat-footer {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 10px;
+  background: #1f2c34;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 11px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #2a3942;
+  color: #e2e8f0;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+.chat-footer input::placeholder {
+  color: #8696a0;
+}
+
+.chat-footer input:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+
+.chat-footer button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: white;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
+  transition: 0.2s;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-footer button:hover {
+  transform: scale(1.1);
+}
+
+/* ===============================
+   JOIN SCREEN
+================================ */
+.join-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 30px;
+  align-items: center;
+
+  background: rgba(2, 6, 23, 0.85);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+
+  position: relative;
+  z-index: 10;
+  /* ⭐ this was missing — makes it clickable above the canvas */
+}
+
+.join-container h3 {
+  color: #e2e8f0;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.join-container input {
+  padding: 12px 16px;
+  width: 260px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #020617;
+  color: #e2e8f0;
+  font-size: 14px;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.join-container input:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+
+.join-container button {
+  padding: 12px 26px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  transition: 0.2s;
+}
+
+.join-container button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
+}
