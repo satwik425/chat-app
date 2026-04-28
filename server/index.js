@@ -41,7 +41,10 @@ const server = http.createServer(app);
 // Initialize Socket.io with CORS configuration
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", // Default Vite port
+    origin: [
+      "http://localhost:5173", 
+      "https://chat-app-zeta-self.vercel.app"
+    ],
     methods: ["GET", "POST"],
   },
 });
